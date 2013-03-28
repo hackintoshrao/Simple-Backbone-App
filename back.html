@@ -11,8 +11,36 @@
     <script src="LIB/backbone-min.js"></script>  
     <script>
       Whisky = Backbone.Model.extend();
-      firstWhisky = new Whisky({
+        firstWhisky = new Whisky({
         name : 'Blenders Pride'
+      });
+      Whiskies = Backbone.Collection.extend({
+        Model:Whisky ,
+        url:"#"
+      });
+      whiskies = new Whiskies([
+        {name:"Royal Stag"}, 
+        {name:"Signature"}  
+          
+      ]);
+      whiskies.on('add',function(model) { 
+        console.log('New model with name:' + model.get("name") + 'added' );
+      });
+      whiskies.add(firstWhisky);
+        
+      whiskies.each( function(model) {
+        console.log(model.get('name'));
+      });
+      first = Backbone.View.extend({
+        initialize : function() { 
+          this.render();
+        } , 
+
+
+        render : function() { 
+          this.$el.append("<h1>The Whisky APP</h1>");
+          return this ; 
+        }
       });
     </script>
   </body>
