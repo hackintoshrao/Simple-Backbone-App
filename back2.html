@@ -28,14 +28,6 @@
         {name:"Signature"}  
           
       ]);
-      whiskies.on('add',function(model) { 
-        console.log('New model with name:' + model.get("name") + 'added' );
-      });
-      whiskies.add(firstWhisky);
-        
-      whiskies.each( function(model) {
-        console.log(model.get('name'));
-      });
       first_view = Backbone.View.extend({
         el : 'body',
         initialize : function() { 
@@ -57,9 +49,15 @@
           this.template = _.template($('#listing').html());
         } , 
         render : function() {
-          
-          this.$el.append(this.template({value: "Royal Stag"}));
-          return this ; 
+        var el = this.$el , 
+          template = this.template;
+          el.empty(); 
+          whiskies.each(function(whis) { 
+            console.log(whis.get("name"));    
+            el.append(template({value: whis.get("name") }) ) ; 
+          });
+
+        return this;
         }
       });
       index_view = new first_view();    
