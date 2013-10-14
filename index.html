@@ -11,13 +11,27 @@
 			<hr>
 			<div class="page">
 
-				
+
 			</div>
 		</div>
 		<! Three dependencies need , backbone , underscore and jquery -->
 		<script type="text/javascript" src="LIB/jquery.js"></script><!download and the store the dependencies in /LIB of the root of the application -->
 		<script type="text/javascript" src="LIB/underscore.js"></script>
 		<script type="text/javascript" src="LIB/backbone.js"></script>
+		<script >
+		var Router = Backbone.Router.extend({
+			routes:{
+				'':'home'
+			}
+
+		});
+		var router = new Router();
+		router.on('route:home',function(){
+			console.log('My first try on backbone routers');
+		})
+
+
+		</script>
 	</body>
 
 </html>
