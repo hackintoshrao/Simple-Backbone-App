@@ -19,6 +19,13 @@
 		<script type="text/javascript" src="LIB/underscore.js"></script>
 		<script type="text/javascript" src="LIB/backbone.js"></script>
 		<script >
+		var UserList = Backbone.View.extend({
+			el:'.page',
+			render : function(){
+				this.$el.html('The View render is working!!!');
+			}
+		});
+		var userlist = new UserList();	
 		var Router = Backbone.Router.extend({
 			routes:{
 				'':'home'
@@ -27,7 +34,8 @@
 		});
 		var router = new Router();
 		router.on('route:home',function(){
-			console.log('My first try on backbone routers');
+			userlist.render();
+			
 		});
 		Backbone.history.start();
 
