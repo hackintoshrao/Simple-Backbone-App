@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Backbone JS appklication</title>
+		<link rel="stylesheet" type="text/css" href="stylesheets/bootstrap.css">
+	</head>
+	<body>
+		<div class="container">
+			<h1>User Manager</h1>
+			<hr>
+			<div class="page">
+
+
+			</div>
+		</div>
+		<! Three dependencies need , backbone , underscore and jquery -->
+		<script type="text/javascript" src="javascripts/LIB/jquery.js"></script><!download and the store the dependencies in /LIB of the root of the application -->
+		<script type="text/javascript" src="javascripts/LIB/underscore.js"></script>
+		<script type="text/javascript" src="javascripts/LIB/backbone.js"></script>
+		<script >
+		
+		var Users = Backbone.Collection.extend({
+			url:'/users'
+		});
+		var UserList = Backbone.View.extend({
+			el:'.page',
+			render : function(){
+				var users = new Users();
+				users.fetch({
+					success : function(){
+						this.$el.html('The View Collection is working  is working!!!');		
+					}
+				});
+				
+			}
+		});
+		var userlist = new UserList();	
+		var Router = Backbone.Router.extend({
+			routes:{
+				'':'home'
+			}
+
+		});
+		var router = new Router();
+		router.on('route:home',function(){
+			userlist.render();
+			
+		});
+		Backbone.history.start();
+
+
+		</script>
+	</body>
+
+</html>
