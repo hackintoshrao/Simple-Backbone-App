@@ -19,10 +19,23 @@
 		<script type="text/javascript" src="LIB/underscore.js"></script>
 		<script type="text/javascript" src="LIB/backbone.js"></script>
 		<script >
+		$.ajaxPrefilter(function(options,originalOptions,jqXHR){
+			options.url = '127.0.0.1:3000'+options.url;
+
+		});
+		var Users = Backbone.Collection.extend({
+			url:'/users'
+		});
 		var UserList = Backbone.View.extend({
 			el:'.page',
 			render : function(){
-				this.$el.html('The View render is working!!!');
+				var users = new Users();
+				users.fetch({
+					success : function(){
+						this.$el.html('The View Collection is working  is working!!!');		
+					}
+				});
+				
 			}
 		});
 		var userlist = new UserList();	
