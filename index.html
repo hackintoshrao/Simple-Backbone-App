@@ -20,7 +20,7 @@
 		<script type="text/javascript" src="LIB/backbone.js"></script>
 		<script >
 		$.ajaxPrefilter(function(options,originalOptions,jqXHR){
-			options.url = '127.0.0.1:3000'+options.url;
+			options.url = 'http://127.0.0.1:3000'+options.url;
 
 		});
 		var Users = Backbone.Collection.extend({
