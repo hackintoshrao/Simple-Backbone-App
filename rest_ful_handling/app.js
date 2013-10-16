@@ -29,7 +29,12 @@ app.configure('development', function(){
 
 app.get('/', routes.index);
 app.get('/users', function(req,res){
-	console.log("backbone Request Accepted");
+  console.log("backbone Request Accepted");
+  var obj = {test:1};
+  res.writeHead(200,{'Content-Type':'application/json'});
+  res.write(JSON.stringify(obj));
+  res.end();
+  
 	
 });
 
