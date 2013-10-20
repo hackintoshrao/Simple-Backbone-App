@@ -16,7 +16,32 @@
 		</div>
 		<! Three dependencies need , backbone , underscore and jquery -->
 		<script type="text/template" id="user-list-template">
-			<h2>Underscore templating tested,working good!!</h2>
+			<table class="table striped">
+						<thead>
+							<tr>
+								<th>Name </th>
+								<th>Age </th>
+								<th>College </th>
+								<th>Branch</th>
+								<th>Passion</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% _.each(users,function(user){ %>
+
+								<tr>
+									<td><%=user.get('name') %></td>
+									<td><%=user.get('age') %></td>
+									<td><%=user.get('college') %></td>
+									<td><%=user.get('branch') %></td>
+									<td><%=user.get('passion') %></td>
+								</tr>
+
+
+						<%	}); %>
+						</tbody>
+			</table>
+
 		</script>
 		<script type="text/javascript" src="javascripts/LIB/jquery.js"></script><!download and the store the dependencies in /LIB of the root of the application -->
 		<script type="text/javascript" src="javascripts/LIB/underscore.js"></script>
@@ -34,6 +59,10 @@
 				users.fetch({
 					success : function(users){
 						var template = _.template($('#user-list-template').html(),{users:users.models});
+						var users = users.models;
+						_.each(users,function(user){   //using the underscore method to iterate through the collections model , testoing the code here 
+							console.log(user.get('name'));
+						});
 						that.$el.html(template);	
 						console.log("success!!!!!")	;
 					}
