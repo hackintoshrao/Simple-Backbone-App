@@ -11,7 +11,7 @@ var express = require('express')
   , mongodb = require('mongodb');
   
 var app = express();
-var server = new mongodb.Server('locahost',:27017,{auto_reconnect:true});
+var server = new mongodb.Server('locahost',27017,{auto_reconnect:true});
 var db = new mongodb.Db('backbone_test',server);
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
@@ -32,7 +32,18 @@ app.configure('development', function(){
 app.get('/', routes.index);
 app.get('/users', function(req,res){
   console.log("backbone Request Accepted");
-  
+  db.open(function(err,collection){
+    if(!err){
+      console.log(err);
+    }
+    else{
+      collection.find().toArray(function(err,docs){
+          console.log(docs);
+      });
+    }
+
+
+  });
   
   
 	
